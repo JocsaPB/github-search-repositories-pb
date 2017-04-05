@@ -1,6 +1,7 @@
 import { GitHubService } from './../../services/github';
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
+import { DetailsPage } from "../details/details";
 
 @Component({
   selector: 'page-home',
@@ -9,16 +10,17 @@ import { NavController, LoadingController } from 'ionic-angular';
 })
 export class HomePage {
 
-  username: string;
-  repositories: any[];
+  public username: string;
+  public repositories: any[];
 
   constructor(
-    public navCtrl: NavController,
+    private navCtrl: NavController,
     private gitHubServ: GitHubService,
-    public loadingCtrl: LoadingController) {
+    private loadingCtrl: LoadingController) {
   }
 
   getRepos() {
+    //loading
     let loading = this.loadingCtrl.create({
       content: "Loading... please wait!"
     });
@@ -44,6 +46,10 @@ export class HomePage {
       }
 
     );
+  }
+
+  goToDetails(repo: any){
+    this.navCtrl.push(DetailsPage, {repo: repo});
   }
 
 }

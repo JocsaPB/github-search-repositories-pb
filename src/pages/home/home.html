@@ -19,7 +19,7 @@
     <button ion-button block (click)="getRepos()">Search</button>
   </div>
 
-  <ion-card *ngFor="let repo of repositories" style="min-height: 100px">
+  <ion-card *ngFor="let repo of repositories" (click)="goToDetails(repo)" style="min-height: 100px">
       <ion-card-header>{{ repo.name }}</ion-card-header>
       <ion-card-content>{{ repo.description }}</ion-card-content>
   </ion-card>
